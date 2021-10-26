@@ -44,7 +44,7 @@ module f_spsram_large(
   WEN
 );
 
-parameter ADDR_WIDTH = 21;	// 2MB per ram, 16MB at all for f_spsram_large
+parameter ADDR_WIDTH = 21;	// 2MB per ram, 32MB at all for f_spsram_large
 parameter WRAP_WIDTH = 8;
 
 input   [ADDR_WIDTH-1:0]  A;           
@@ -190,6 +190,7 @@ assign Q[14*WRAP_WIDTH-1:13*WRAP_WIDTH]  = ram13_dout[WRAP_WIDTH-1:0];
 assign Q[15*WRAP_WIDTH-1:14*WRAP_WIDTH]  = ram14_dout[WRAP_WIDTH-1:0];
 assign Q[16*WRAP_WIDTH-1:15*WRAP_WIDTH]  = ram15_dout[WRAP_WIDTH-1:0];
 
+// data 8 bit, addr 21 bit,  once read/write 16*8(128) bit (4 words)
 ram #(WRAP_WIDTH,ADDR_WIDTH) ram0(
   .PortAClk (CLK),
   .PortAAddr(addr),
