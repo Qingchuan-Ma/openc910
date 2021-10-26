@@ -1,4 +1,4 @@
-#!/bin/csh
+#!/bin/sh
 
 # /*Copyright 2019-2021 T-Head Semiconductor Co., Ltd.
 

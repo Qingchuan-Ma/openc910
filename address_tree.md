@@ -1,15 +1,15 @@
-
+```
 AXI_SRAM:           40'h0000_0000 ~ 40'h01ff_ffff
 included in x_f_spsram_large:
-mem_addr[24:4] means mem_addr[24:0] address sram space
+mem_addr[24:4] means mem_addr[24:0] address sram space 32 MB
 
 
 AXI_ERR1:           40'h0200_0000 ~ 40'h0fff_ffff
 included in x_f_spsram_32768x128_L:
-mem_addr[18:4] means mem_addr[18:0] address err1 space
+mem_addr[18:4] means mem_addr[18:0] address err1 space 0.5 MB
 
 AHB:                40'h1000_0000 ~ 40'h1fff_ffff
-    S2:                 40'h1000_0000 ~ 40'h1eff_ffff
+    S2(mem_ctrl):           40'h1000_0000 ~ 40'h1eff_ffff
         PS1(uart):          40'h1001_5000 ~ 40'h1001_5fff
         PS2(timer):         40'h1001_1000 ~ 40'h1001_1fff
         PS3(pmu):           40'h1001_6000 ~ 40'h1001_6fff
@@ -25,5 +25,5 @@ AHB:                40'h1000_0000 ~ 40'h1fff_ffff
 
 AXI_ERR2:           40'h2000_0000 ~ 40'hff_ffff_ffff
 included in x_f_spsram_32768x128_L:
-mem_addr[18:4] means mem_addr[18:0] address err1 space
-
+mem_addr[18:4] means mem_addr[18:0] address err1 space 0.5 MB
+```
