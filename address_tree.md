@@ -9,7 +9,7 @@ included in x_f_spsram_32768x128_L:
 mem_addr[18:4] means mem_addr[18:0] address err1 space 0.5 MB
 
 AHB:                40'h1000_0000 ~ 40'h1fff_ffff
-    S2(mem_ctrl):           40'h1000_0000 ~ 40'h1eff_ffff
+    S2:                 40'h1000_0000 ~ 40'h1eff_ffff
         PS1(uart):          40'h1001_5000 ~ 40'h1001_5fff
         PS2(timer):         40'h1001_1000 ~ 40'h1001_1fff
         PS3(pmu):           40'h1001_6000 ~ 40'h1001_6fff
@@ -18,7 +18,7 @@ AHB:                40'h1000_0000 ~ 40'h1fff_ffff
         PS6(clk_gen):       40'h1001_7000 ~ 40'h1001_7fff
         PS7(stimer):        40'h1001_8000 ~ 40'h1001_8fff
         PS8:                40'h1001_A000 ~ 40'h1001_Afff, hang
-    S1:                 40'h1f00_0000 ~ 40'h1f01_ffff
+    S1(mem_ctrl):           40'h1f00_0000 ~ 40'h1f01_ffff
     S3:                 40'h1f02_0000 ~ 40'h1fff_ffff
         x_err_gen
 

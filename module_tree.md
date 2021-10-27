@@ -1,10 +1,10 @@
 # soc struct
 
 ```
-|--x_soc (smart_run/logical/common/soc.v)
-    |--x_axi_interconnect (smart_run/logical/axi/axi_interconnect128.v)
-    |--x_axi_fifo (smart_run/logical/axi/axi_fifo.v)
-        |--x_counter_entry0 (smart_run/logical/common/fifo_counter.v)
+|--x_soc
+    |--x_axi_interconnect
+    |--x_axi_fifo
+        |--x_counter_entry0
         |--...
         |--x_counter_entry7
         |--x_axi_fifo_entry0 (smart_run/logical/axi/axi_fifo_entry.v)
@@ -63,11 +63,6 @@
             |--x_tap2_sm
             |--x_jtag2pmu_sync
     |--x_err_gen (smart_run/logical/common/err_gen.v)
-```
-
-# cpu struct
-
-```
     |--x_cpu_sub_system_axi (smart_run/logical/common/cpu_sub_system_axi.v)
         |--wid_for_axi4 （smart_run/logical/common/wid_for_axi4.v）
             |--x_wid_entry_0 (smart_run/logical/common/wid_entry.v)
@@ -78,7 +73,81 @@
 
 ```
 
-# read address channel:
+# cpu struct
+
+```
+|--x_cpu_top
+    |--x_rmu_top
+    |--x_ct_top_0
+    |--x_ct_top_1
+    |--x_ct_ciu_top
+        |--x_ct_piu0_other_io
+        |--x_ct_piu1_other_io
+        |--x_ct_piu2_other_io
+        |--x_ct_piu3_other_io
+        |--x_ct_piu0_top
+        |--x_ct_piu1_top
+        |--x_ct_piu2_top_dummy
+        |--x_ct_piu3_top_dummy
+        |--x_ct_piu4_top_dummy
+        |--x_ct_ciu_bmbif
+        |--x_ct_ciu_snb_0
+        |--x_ct_ciu_snb_1
+        |--x_ct_ciu_vb
+        |--x_ct_ciu_ebiuif
+        |--x_ct_ciu_l2cif
+        |--x_ct_ciu_ctcq
+        |--x_ct_ciu_ncq
+        |--x_ct_ebiu_top
+        |--x_ct_ciu_regs
+        |--x_ct_ciu_apbif
+        |--x_ciu_top_gated_clk
+    |--x_ct_l2c_top
+        |--x_ct_l2c_sub_bank_0
+        |--x_ct_l2c_sub_bank_1
+        |--x_ct_l2c_prefetch
+    |--x_ct_clint_top
+        |--x_ct_clint_func
+    |--x_plic_top
+        |--x_csky_apb_1tox_matrix
+        |--x_plic_sec_busif
+        |--x_plic_ctrl
+        |--x_plic_hreg_busif
+        |--x_plic_kid_busif
+        |--x_plic_hart_arb
+        |--x_plic_cov
+    |--x_ct_mp_rst_top
+    |--x_ct_mp_clk_top
+        |--apb_clk_buf
+        |--x_data_bist_gated_clk
+        |--data_bank0_clk_buf
+        |--data_bank1_clk_buf
+        |--tag_bank0_clk_buf
+        |--tag_bank1_clk_buf
+    |--x_ct_sysio_top
+    |--x_ct_had_common_top
+
+```
+
+
+# core struct
+
+```
+
+|--x_ct_top_0 (C910_RTL_FACTORY/gen_rtl/cpu/rtl/ct_top.v)
+    |--x_ct_core
+    |--x_ct_mmu_top
+    |--x_ct_pmp_top
+    |--x_ct_biu_top
+    |--x_ct_had_private_top
+    |--x_ct_hpcp_top
+    |--x_ct_rst_top
+    |--x_ct_clk_top
+```
+
+
+
+# axi read address channel:
 
 ```
 cpu->x_axi_fifo->x_axi_interconnect/x_axi_slave128/x_axi_err/x_axi2ahb/x_axi_err1
@@ -113,4 +182,14 @@ x_apb_bridge, select:
     ps7:    x_stimer
     ps8:    hang
 by apb_haddr
+```
+
+# diagram
+
+
+```
+
+
+
+
 ```
