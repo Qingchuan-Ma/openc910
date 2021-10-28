@@ -101,6 +101,7 @@
         |--x_ct_ebiu_top
         |--x_ct_ciu_regs
         |--x_ct_ciu_apbif
+            |--x_apbif_gated_clk
         |--x_ciu_top_gated_clk
     |--x_ct_l2c_top
         |--x_ct_l2c_sub_bank_0
@@ -125,26 +126,145 @@
         |--tag_bank0_clk_buf
         |--tag_bank1_clk_buf
     |--x_ct_sysio_top
+        |--x_ct_sysio_in_gated_clk
+        |--x_ct_sysio_core0
+        |--x_ct_sysio_core1
     |--x_ct_had_common_top
-
+        |--x_ct_had_sm
+        |--x_ct_had_io
+        |--x_ct_had_serial
+        |--x_ct_had_ir
+        |--x_ct_had_etm
+        |--x_ct_had_common_regs
+        |--x_ct_had_common_dbg_info
 ```
 
 
 # core struct
 
 ```
-
-|--x_ct_top_0 (C910_RTL_FACTORY/gen_rtl/cpu/rtl/ct_top.v)
+|--x_ct_top_0
     |--x_ct_core
     |--x_ct_mmu_top
+        |--x_utlb_gateclk
+        |--x_ct_mmu_iutlb
+        |--x_ct_mmu_dutlb
+        |--x_ct_mmu_regs
+        |--x_ct_mmu_tlboper
+        |--x_ct_mmu_arb
+        |--x_ct_mmu_jtlb
+        |--x_ct_mmu_ptw
+        |--x_ct_mmu_sysmap_0
+        |--...
+        |--x_ct_mmu_sysmap_4
     |--x_ct_pmp_top
+        |--x_pmp_gated_clk
+        |--x_ct_pmp_regs
+        |--x_ct_pmp_acc0
+        |--...
+        |--x_ct_pmp_acc4
     |--x_ct_biu_top
+        |--x_ct_biu_req_arbiter
+        |--x_ct_biu_read_channel
+        |--x_ct_biu_write_channel
+        |--x_ct_biu_snoop_channel
+        |--x_ct_biu_lowpower
+        |--x_ct_biu_csr_req_arbiter
+        |--x_ct_biu_other_io_sync
     |--x_ct_had_private_top
+        |--x_ct_had_bkpta
+        |--x_ct_had_bkptb
+        |--x_ct_had_ctrl
+        |--x_ct_had_ddc_ctrl
+        |--x_ct_had_ddc_dp
+        |--x_ct_had_pcfifo
+        |--x_ct_had_regs
+        |--x_ct_had_trace
+        |--x_ct_had_event
+        |--x_ct_had_dbg_info
+        |--x_ct_had_nirv_bkpt
+        |--x_ct_had_private_ir
     |--x_ct_hpcp_top
+        |--x_ct_hpcp_adder_sel_3
+        |--...
+        |--x_ct_hpcp_adder_sel_18
+        |--x_ct_hpcp_cntinten_0
+        |--...
+        |--x_ct_hpcp_cntinten_31
+        |--x_ct_hpcp_cntof_0
+        |--...
+        |--x_ct_hpcp_cntof_31
+        |--x_hpcp_mhpmevent3
+        |--...
+        |--x_hpcp_mhpmevent18
+        |--x_hpcp_mcycle
+        |--x_hpcp_minstret
+        |--x_hpcp_mhpmcnt3
+        |--x_hpcp_mhpmcnt18
     |--x_ct_rst_top
     |--x_ct_clk_top
+        |--core_clk_buf
 ```
 
+
+## ct_core
+```
+|--x_ct_core
+    |--x_ct_ifu_top
+        |--x_ct_ifu_addrgen
+        |--x_ct_ifu_bht
+        |--x_ct_ifu_btb
+        |--x_ct_ifu_l0_btb
+        |--x_ct_ifu_sfp
+        |--x_ct_ifu_ibctrl
+        |--x_ct_ifu_ibdp
+        |--x_ct_ifu_ibuf
+        |--x_ct_ifu_icache_if
+        |--x_ct_ifu_ifctrl
+        |--x_ct_ifu_ifdp
+        |--x_ct_ifu_ind_btb
+        |--x_ct_ifu_ipb
+        |--x_ct_ifu_ipctrl
+        |--x_ct_ifu_ipdp
+        |--x_ct_ifu_l1_refill
+        |--x_ct_ifu_lbuf
+        |--x_ct_ifu_pcfifo_if
+        |--x_ct_ifu_pcgen
+        |--x_ct_ifu_ras
+        |--x_ct_ifu_vector
+        |--x_ct_ifu_debug
+    |--x_ct_idu_top
+        |--x_ct_idu_id_ctrl
+        |--x_ct_idu_id_dp
+        |--x_ct_idu_id_fence
+        |--x_ct_idu_ir_ctrl
+        |--x_ct_idu_ir_dp
+        |--x_ct_idu_ir_rt
+        |--x_ct_idu_ir_frt
+        |--x_ct_idu_ir_vrt
+        |--x_ct_idu_is_ctrl
+        |--x_ct_idu_is_dp
+        |--x_ct_idu_is_aiq0
+        |--x_ct_idu_is_aiq1
+        |--x_ct_idu_is_biq
+        |--x_ct_idu_is_lsiq
+        |--x_ct_idu_is_sdiq
+        |--x_ct_idu_is_viq0
+        |--x_ct_idu_is_viq1
+        |--x_ct_idu_rf_ctrl
+        |--x_ct_idu_rf_dp
+        |--x_ct_idu_rf_fwd
+        |--x_ct_idu_rf_prf_pregfile
+        |--x_ct_idu_rf_prf_eregfile
+        |--x_ct_idu_rf_prf_vregfile_fr
+        |--x_ct_idu_rf_prf_vregfile_vr0
+        |--x_ct_idu_rf_prf_vregfile_vr1
+    |--x_ct_iu_top
+    |--x_ct_vfpu_top
+    |--x_ct_lsu_top
+    |--x_ct_cp0_top
+    |--x_ct_rtu_top
+```
 
 
 # axi read address channel:

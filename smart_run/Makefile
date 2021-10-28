@@ -20,7 +20,7 @@ include ./setup/env_check.mk
 # Simulation related
 ################################################################################
 SIM = iverilog
-DUMP = off
+DUMP = on
 
 ifeq ($(DUMP), on)
 SIM_DUMP :=
@@ -73,15 +73,15 @@ ifeq ($(SIM), vcs)
 	@make -s cleansim
 	@cd ./work && vcs $(SIMULATOR_OPT) $(TIMESCALE) $(SIMULATOR_DEF) $(SIM_FILELIST) $(SIM_DUMP) $(SIMULATOR_LOG) $(SIMULATOR_POWER_OPT) 
 else 
-    ifeq ($(SIM), nc) 
+	ifeq ($(SIM), nc)
 	@cd ./work && irun $(SIMULATOR_OPT) $(TIMESCALE) $(SIMULATOR_DEF) $(SIM_FILELIST) $(SIM_DUMP) $(SIMULATOR_LOG) 
-    else
-        ifeq ($(SIM), iverilog)
+	else
+		ifeq ($(SIM), iverilog)
 	  @cd ./work && iverilog $(TIMESCALE) $(SIMULATOR_OPT) $(SIMULATOR_DEF) $(SIM_FILELIST) $(SIM_DUMP) $(SIMULATOR_LOG)
-        else
+		else
 	  @echo "  [THead-smart] Please specify SIM = vcs to use VCS, or SIM = nc to use irun ..."
-        endif
-    endif 
+		endif
+		endif
 endif 
 
 cleansim:
@@ -133,11 +133,11 @@ ifeq ($(findstring $(CASE), $(CASE_LIST)), $(CASE))
 ifeq ($(SIM), vcs)
 	cd ./work && ./simv -l run.vcs.log $(SIMV_POWER_OPT)
 else
-        ifeq ($(SIM), nc)	
+ifeq ($(SIM), nc)
 	cd ./work && irun -R -l run.irun.log
-        else
+else
 	cd ./work && vvp xuantie_core.vvp 
-        endif
+endif
 endif
 else
 	$(error Argument CASE=xxx is not valid: \
