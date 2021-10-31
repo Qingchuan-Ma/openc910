@@ -1,7 +1,7 @@
 * soc and peripherals
-    - qspi
+    - axi-qspi
     - usb/pcie
-    - ddr
+    - axi-ddr
     - rom and reset pc
     - ethernet
     

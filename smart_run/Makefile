@@ -73,15 +73,15 @@ ifeq ($(SIM), vcs)
 	@make -s cleansim
 	@cd ./work && vcs $(SIMULATOR_OPT) $(TIMESCALE) $(SIMULATOR_DEF) $(SIM_FILELIST) $(SIM_DUMP) $(SIMULATOR_LOG) $(SIMULATOR_POWER_OPT) 
 else 
-	ifeq ($(SIM), nc)
-	@cd ./work && irun $(SIMULATOR_OPT) $(TIMESCALE) $(SIMULATOR_DEF) $(SIM_FILELIST) $(SIM_DUMP) $(SIMULATOR_LOG) 
-	else
-		ifeq ($(SIM), iverilog)
-	  @cd ./work && iverilog $(TIMESCALE) $(SIMULATOR_OPT) $(SIMULATOR_DEF) $(SIM_FILELIST) $(SIM_DUMP) $(SIMULATOR_LOG)
-		else
-	  @echo "  [THead-smart] Please specify SIM = vcs to use VCS, or SIM = nc to use irun ..."
-		endif
-		endif
+    ifeq ($(SIM), nc)
+		@cd ./work && irun $(SIMULATOR_OPT) $(TIMESCALE) $(SIMULATOR_DEF) $(SIM_FILELIST) $(SIM_DUMP) $(SIMULATOR_LOG) 
+    else
+        ifeq ($(SIM), iverilog)
+			@cd ./work && iverilog $(TIMESCALE) $(SIMULATOR_OPT) $(SIMULATOR_DEF) $(SIM_FILELIST) $(SIM_DUMP) $(SIMULATOR_LOG)
+        else
+			@echo "  [THead-smart] Please specify SIM = vcs to use VCS, or SIM = nc to use irun ..."
+        endif
+    endif
 endif 
 
 cleansim:
